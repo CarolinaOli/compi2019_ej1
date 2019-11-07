@@ -318,7 +318,7 @@ namespace at.jku.ssw.cc //Compilador //text_Box_Mio
             Program1.form1.richTextBox8.Text = ""; //pantallita
             Program1.form1.richTextBox9.Text = ""; //salida real (con la maqu virtual real)
             Program1.form1.richTextBox4.Text = ""; //Vars Locales
-            Parser.pilita.tope = -1; //
+            Parser.pilitapilita.tope = -1; //
             Parser.pilita.inicializa();
 
             //Restaura Vars Locales
@@ -1425,6 +1425,11 @@ namespace at.jku.ssw.cc //Compilador //text_Box_Mio
             
             pr.StartInfo.FileName = "z_gramatica.txt";
             pr.Start();
+        }
+
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void acercaToolStripMenuItem_Click(object sender, EventArgs e)
