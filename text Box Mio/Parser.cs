@@ -2328,6 +2328,8 @@ namespace at.jku.ssw.cc
             }
         }//Fin Relop
 
+        //fjcndkjfnvjrnv 
+
         static void Relop(System.Windows.Forms.TreeNode padre)
         {
             switch (la)
