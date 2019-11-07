@@ -204,9 +204,9 @@ namespace at.jku.ssw.cc
         static void Scan()
         {
             token = laToken;
-            laToken = Scanner.Next();
+            laToken = Scanner.Next();//Implementacion del automata
             //La 1° vez q se ejecuta, token queda con Token(1, 1), laToken con "class" (primer token del programa)
-            la = laToken.kind;
+            la = laToken.kind; // se queda con un entero como identificador
         }
 
         /* Verifies symbol and reads ahead. */
@@ -220,22 +220,24 @@ namespace at.jku.ssw.cc
 
         static void Program()
         {
+            /* 1ERnO TERMINAL LO COLOCA EN EL ARBOL, ES LO PRIMERO QUE HACE
+           2DO VA A LA GRAMATICA (227)*/
             System.Windows.Forms.TreeNode program = new System.Windows.Forms.TreeNode();  //Crea el nodo program
             program.Text = "Program"; //Texto del nodo "program"
             Program1.form1.treeView1.Nodes.Add(program); //"cuelga" el nodo (raiz) "program" del treeView1 ya creado
             Parser.MessageBoxCon3Preg();
             Code.seleccLaProdEnLaGram(0);  //pinta de rojo    Program = 'class' ident PosDeclars '{' MethodDeclsOpc '}'.
             Parser.MessageBoxCon3Preg();
-            program.Nodes.Add("class");
-            program.ExpandAll(); //Visualiza (Expande) hijo de Program
+            program.Nodes.Add("class");//cuelga class, llama a la implementacion del automata 
+            program.ExpandAll(); //Visualiza (Expande) hijo de Program  si o si para el primero
             Parser.MessageBoxCon3Preg();
             //antes del Check (Token.CLASS), token = ...(1,1),  laToken = ..."class".. y la = Token.CLASS
             Check(Token.CLASS);   //class ProgrPpal
             //Se cumple que:  (la == expected) => ejecuta Scan => token = ..."class"... y laToden = ..."ProgrPpal" 
-            Code.Colorear("token");   //colorea "class" en ventana de Edicion
+            Code.Colorear("token");   //colorea "class" en ventana de Edicion 
             //"Program = 'class' ident PosDeclars '{' MethodDeclsOpc '}'."
             //Ya reconoció 'class', ahora va a reconocer ident
-            program.Nodes.Add("ident");
+            program.Nodes.Add("ident"); //cuelga 
             Parser.MessageBoxCon3Preg();
             Check(Token.IDENT); // "ProgrPpal" => debo insertar el token en la tabla de símbolos
             // es el comienzo del programa y abrir un nuevo alcance
@@ -643,6 +645,7 @@ namespace at.jku.ssw.cc
                 else
                     if (la == Token.IDENT)
                     {
+                    /// tema de parentesis 
                         Type(out type);  //  token = UnTipo laToken = Main
                         Code.Colorear("token");
                         /////////// Agrega 'Type' al arbol y lo cuelga de typeorvoid
@@ -688,7 +691,7 @@ namespace at.jku.ssw.cc
                     methodDecl.Nodes.Add("')'");
                     MessageBoxCon3Preg();
                 }
-                
+                /* Modificacion 3/10
                 //Comienza Nodo Declaration.
                 System.Windows.Forms.TreeNode posDeclars = new System.Windows.Forms.TreeNode("PosDeclars");
                 methodDecl.Nodes.Add(posDeclars);
@@ -698,7 +701,7 @@ namespace at.jku.ssw.cc
                 //bool encuentraDecl = false;
                 Code.CreateMetadata(curMethod);  //genera il
                     //Declaraciones  por ahora solo decl de var, luego habria q agregar const y clases
-                    while (la != Token.LBRACE && la != Token.EOF)
+                   /* while (la != Token.LBRACE && la != Token.EOF)
                     //void Main()==> int x,i; {val = new Table;....}
                     {
                         if (la == Token.IDENT)
@@ -748,8 +751,11 @@ namespace at.jku.ssw.cc
                 MessageBoxCon3Preg();
                 Code.seleccLaProdEnLaGram(8);
                 MessageBoxCon3Preg();
+
+                Modificacion 3/10 */
+
                 //Comienza Block
-                Block(methodDecl);  //Bloque dentro de MethodDecl() 
+                Block(methodDecl);  //Bloque dentro de MethodDecl()                 
                 curMethod.nArgs = Tab.topScope.nArgs;
                 curMethod.nLocs = Tab.topScope.nLocs;
                 curMethod.locals = Tab.topScope.locals;
@@ -759,6 +765,7 @@ namespace at.jku.ssw.cc
                 Parser.nroDeInstrCorriente++;
                 Parser.cil[Parser.nroDeInstrCorriente].accionInstr = Parser.AccionInstr.ret;
                 Code.cargaInstr("ret");
+
             }
         }//Fin MethodDecl
 
@@ -1318,6 +1325,60 @@ namespace at.jku.ssw.cc
             block.ExpandAll();
             MessageBoxCon3Preg(methodDecl);
             Code.Colorear("token");
+            //modificacion 3/10
+            //Comienza Nodo Declaration.
+            System.Windows.Forms.TreeNode posDeclars = new System.Windows.Forms.TreeNode("PosDeclars");
+            methodDecl.Nodes.Add(posDeclars);
+            MessageBoxCon3Preg();
+            Code.seleccLaProdEnLaGram(1);
+            MessageBoxCon3Preg();
+            //bool encuentraDecl = false;
+            Code.CreateMetadata(curMethod);  //genera il
+            //Declaraciones  por ahora solo decl de var, luego habria q agregar const y clases
+             //while (la != Token.LBRACE && la != Token.EOF)
+             //void Main()==> int x,i; {val = new Table;....}
+             //{
+                if (la == Token.IDENT)
+                {
+                    //encuentraDecl = true;
+                    Code.Colorear("latoken"); //colorea "int"  en int i;,Infiere la 2° opcion de PosDeclars   aaaaaaaa
+                    System.Windows.Forms.TreeNode declaration = new System.Windows.Forms.TreeNode("Declaration");
+                      posDeclars.Nodes.Add(declaration);
+                    posDeclars.ExpandAll();
+                    MessageBoxCon3Preg();
+                    Code.seleccLaProdEnLaGram(2);
+                    System.Windows.Forms.TreeNode varDecl = new System.Windows.Forms.TreeNode("VarDecl");
+                    declaration.Nodes.Add(varDecl);
+                    declaration.ExpandAll();
+                    MessageBoxCon3Preg();
+                    Code.seleccLaProdEnLaGram(6);
+                    VardDecl(Symbol.Kinds.Local, varDecl); // int x,i; en MethodDecl()  con int ya consumido
+                }
+                else
+                {
+                    token = laToken;
+                    Errors.Error("espero una declaracion de variable");
+                }
+            
+            //Termina Vardecl.
+            Code.seleccLaProdEnLaGram(2);
+            if (cantVarLocales > 0)
+            {
+                string instrParaVarsLocs = ".locals init(int32 V_0";
+                for (int i = 1; i < cantVarLocales; i++)
+                {
+                    instrParaVarsLocs = instrParaVarsLocs + "," + "\n          int32 V_" + i.ToString(); // +"  ";
+                }
+                instrParaVarsLocs = instrParaVarsLocs + ")";
+                Code.cargaInstr(instrParaVarsLocs);
+           }                    
+            Code.seleccLaProdEnLaGram(1);
+            MessageBoxCon3Preg();
+            System.Windows.Forms.TreeNode posDeclarsAux = new System.Windows.Forms.TreeNode("PosDeclars");
+            posDeclarsAux.Nodes.Add(".");
+            posDeclarsAux.ExpandAll();
+            posDeclars.Nodes.Add(posDeclarsAux);
+            // Modificacion 3/10
             /////// Agrega 'StatementsOpc' al arbol
             System.Windows.Forms.TreeNode statementsopc = new System.Windows.Forms.TreeNode("StatementsOpc");
             block.Nodes.Add(statementsopc);
@@ -2344,7 +2405,7 @@ namespace at.jku.ssw.cc
 
         public static void Parse(string prog)
         {
-            Scanner.Init(new StringReader(prog), null);  //deja en ch el 1° char de prog 
+            Scanner.Init(new StringReader(prog), null);  //deja en ch el 1° char de p
             Tab.Init();  //topScope queda apuntando al Scope p/el universe
             Errors.Init();
             curMethod = null;
