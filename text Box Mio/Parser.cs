@@ -153,27 +153,35 @@ namespace at.jku.ssw.cc
 
         public static void muestraVarsLocales()
         {
-            string todasLasVarsLocales;
-            if (cantVarLocales == 0) todasLasVarsLocales = "No hay vars locales";
-            else
+            if (cantVarLocales > 0)
             {
-                todasLasVarsLocales = locals[0].ToString();
+                string instrParaVarsLocs = ".locals init(int32 V_0";
                 for (int i = 1; i < cantVarLocales; i++)
                 {
-                    todasLasVarsLocales = todasLasVarsLocales + "\n" + locals[i].ToString();
+                    instrParaVarsLocs = instrParaVarsLocs + "," + "\n          int32 V_" + i.ToString(); // +"  ";
                 }
-                Program1.form1.richTextBox4.Text = todasLasVarsLocales;
+                instrParaVarsLocs = instrParaVarsLocs + ")";
+                Code.cargaInstr(instrParaVarsLocs);
+
             }
         }
 
         static void ParteFinal1()
         {
-            Type ptType1 = Code.program.CreateType();
-            object ptInstance1 = Activator.CreateInstance(ptType1, new object[0]);
-            ptType1.InvokeMember("Main", BindingFlags.InvokeMethod, null, ptInstance1, new object[0]);
-            Code.assembly.Save("Piripipi" + ".exe");
+            try
+            {
+                Type ptType1 = Code.program.CreateType();
+                object ptInstance1 = Activator.CreateInstance(ptType1, new object[0]);
+                ptType1.InvokeMember("Main", BindingFlags.InvokeMethod, null, ptInstance1, new object[0]);
+                Code.assembly.Save("Piripipi" + ".exe");
 
-            if (ZZ.readKey) Console.ReadKey();
+                if (ZZ.readKey) Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }//Fin ParteFinal1
 
         static void ReadKeyMio()
