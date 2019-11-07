@@ -65,7 +65,7 @@ public class Scanner {
 	/* obtiene el siguiente token
 	 * a ser usado por el parser. */
 
-	public static Token Next () {  //zzz
+	public static Token Next () {  //Implementacion
         // intenta formar un token de la entrada
         //linea=1, col=13 y apunta al blanco 
         while ((ch == ' ') || (ch == LF) || (ch == CR)) // bloque que saltea los blancos 
@@ -122,7 +122,10 @@ public class Scanner {
             case '}':
                 t.kind = Token.RBRACE; t.str = ch.ToString(); NextCh();
                 break;
-            case EOF: t.kind = Token.EOF;
+                
+
+            case EOF:
+                    t.kind = Token.EOF;
                 break;
             // -----------------------
             //| tokens compuestos     |
@@ -345,14 +348,19 @@ public class Scanner {
     }
     static void ReadName(Token t)
     {
-        while ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_')
+            char cha=' ';
+            //modificar 
+            // while ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_')
+            while ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == '_' || ch>='0' && ch<='9' )
         {
+                cha = ch;
             t.str = t.str+ch;
             NextCh();
         }
+        
         if (esPalabraClave(t.str))
-            switch (t.str)
-            {
+                switch (t.str)
+                {
                 case "break":
                     t.kind = Token.BREAK;
                     break;
@@ -393,9 +401,9 @@ public class Scanner {
             }
         else
         {
-            t.kind = Token.IDENT;
+                if (cha != '_')
+                     t.kind = Token.IDENT;
         }
-        
     }
     static void ReadNumber(Token t)
     {
