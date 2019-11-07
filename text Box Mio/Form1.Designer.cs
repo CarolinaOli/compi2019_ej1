@@ -141,7 +141,7 @@
             this.richTextBox3.Location = new System.Drawing.Point(3, 3);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.ReadOnly = true;
-            this.richTextBox3.Size = new System.Drawing.Size(522, 541);
+            this.richTextBox3.Size = new System.Drawing.Size(522, 562);
             this.richTextBox3.TabIndex = 15;
             this.richTextBox3.Text = "";
             this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
@@ -578,70 +578,70 @@
             this.bUParsingToolStripMenuItem,
             this.compilerGeneratorsToolStripMenuItem});
             this.pPTToolStripMenuItem.Name = "pPTToolStripMenuItem";
-            this.pPTToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.pPTToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.pPTToolStripMenuItem.Text = "PPT";
             this.pPTToolStripMenuItem.Click += new System.EventHandler(this.pPTToolStripMenuItem_Click);
             // 
             // introducciónToolStripMenuItem
             // 
             this.introducciónToolStripMenuItem.Name = "introducciónToolStripMenuItem";
-            this.introducciónToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.introducciónToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.introducciónToolStripMenuItem.Text = "Introducción";
             this.introducciónToolStripMenuItem.Click += new System.EventHandler(this.introducciónToolStripMenuItem_Click);
             // 
             // overviewppsxToolStripMenuItem
             // 
             this.overviewppsxToolStripMenuItem.Name = "overviewppsxToolStripMenuItem";
-            this.overviewppsxToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.overviewppsxToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.overviewppsxToolStripMenuItem.Text = "Overview";
             this.overviewppsxToolStripMenuItem.Click += new System.EventHandler(this.overviewppsxToolStripMenuItem_Click);
             // 
             // scanningToolStripMenuItem
             // 
             this.scanningToolStripMenuItem.Name = "scanningToolStripMenuItem";
-            this.scanningToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.scanningToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.scanningToolStripMenuItem.Text = "Scanning";
             this.scanningToolStripMenuItem.Click += new System.EventHandler(this.scanningToolStripMenuItem_Click);
             // 
             // parsingToolStripMenuItem
             // 
             this.parsingToolStripMenuItem.Name = "parsingToolStripMenuItem";
-            this.parsingToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.parsingToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.parsingToolStripMenuItem.Text = "Parsing";
             this.parsingToolStripMenuItem.Click += new System.EventHandler(this.parsingToolStripMenuItem_Click);
             // 
             // semanticProcessingToolStripMenuItem
             // 
             this.semanticProcessingToolStripMenuItem.Name = "semanticProcessingToolStripMenuItem";
-            this.semanticProcessingToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.semanticProcessingToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.semanticProcessingToolStripMenuItem.Text = "SemanticProcessing";
             this.semanticProcessingToolStripMenuItem.Click += new System.EventHandler(this.semanticProcessingToolStripMenuItem_Click);
             // 
             // symbolTableParaImprimirToolStripMenuItem
             // 
             this.symbolTableParaImprimirToolStripMenuItem.Name = "symbolTableParaImprimirToolStripMenuItem";
-            this.symbolTableParaImprimirToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.symbolTableParaImprimirToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.symbolTableParaImprimirToolStripMenuItem.Text = "SymbolTable para Imprimir";
             this.symbolTableParaImprimirToolStripMenuItem.Click += new System.EventHandler(this.symbolTableParaImprimirToolStripMenuItem_Click);
             // 
             // codeGenerationToolStripMenuItem
             // 
             this.codeGenerationToolStripMenuItem.Name = "codeGenerationToolStripMenuItem";
-            this.codeGenerationToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.codeGenerationToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.codeGenerationToolStripMenuItem.Text = "CodeGeneration";
             this.codeGenerationToolStripMenuItem.Click += new System.EventHandler(this.codeGenerationToolStripMenuItem_Click);
             // 
             // bUParsingToolStripMenuItem
             // 
             this.bUParsingToolStripMenuItem.Name = "bUParsingToolStripMenuItem";
-            this.bUParsingToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.bUParsingToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.bUParsingToolStripMenuItem.Text = "BU-Parsing";
             this.bUParsingToolStripMenuItem.Click += new System.EventHandler(this.bUParsingToolStripMenuItem_Click);
             // 
             // compilerGeneratorsToolStripMenuItem
             // 
             this.compilerGeneratorsToolStripMenuItem.Name = "compilerGeneratorsToolStripMenuItem";
-            this.compilerGeneratorsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.compilerGeneratorsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.compilerGeneratorsToolStripMenuItem.Text = "CompilerGenerators";
             this.compilerGeneratorsToolStripMenuItem.Click += new System.EventHandler(this.compilerGeneratorsToolStripMenuItem_Click);
             // 
@@ -662,6 +662,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(536, 596);
             this.tabControl1.TabIndex = 38;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // pag1
             // 
@@ -710,7 +711,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(528, 547);
+            this.tabPage1.Size = new System.Drawing.Size(528, 568);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Tabla de Símbolos ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -720,7 +721,7 @@
             this.arbolTS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.arbolTS.Location = new System.Drawing.Point(3, 3);
             this.arbolTS.Name = "arbolTS";
-            this.arbolTS.Size = new System.Drawing.Size(522, 541);
+            this.arbolTS.Size = new System.Drawing.Size(522, 562);
             this.arbolTS.TabIndex = 0;
             // 
             // tabPage2
@@ -729,7 +730,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(528, 547);
+            this.tabPage2.Size = new System.Drawing.Size(528, 568);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Instr CIL (RT 3)";
             this.tabPage2.UseVisualStyleBackColor = true;
