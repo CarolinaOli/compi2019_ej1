@@ -318,7 +318,7 @@ namespace at.jku.ssw.cc //Compilador //text_Box_Mio
             Program1.form1.richTextBox8.Text = ""; //pantallita
             Program1.form1.richTextBox9.Text = ""; //salida real (con la maqu virtual real)
             Program1.form1.richTextBox4.Text = ""; //Vars Locales
-            Parser.pilitapilita.tope = -1; //
+            Parser.pilita.tope = -1; //
             Parser.pilita.inicializa();
 
             //Restaura Vars Locales
